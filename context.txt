@@ -1,0 +1,479 @@
+Crie um quiz interativo em formato de Aplicativo de Teste de Eneagrama Gamificado (Mobile-First)
+Título do Projeto: A Jornada do Eneagrama: Teste Interativo Mobile
+
+Objetivo Principal: Desenvolver uma aplicação web de um teste de Eneagrama gamificado, com design mobile-first, para proporcionar uma experiência imersiva e fluida em smartphones. A aplicação deve capturar leads, integrar com um webhook e direcionar os usuários para uma página de vendas após a revelação do resultado.
+
+Princípio Fundamental: Design Mobile-First Toda a aplicação deve ser projetada e desenvolvida priorizando a experiência em dispositivos móveis.
+Layout Vertical: O layout deve ser de coluna única, otimizado para visualização e interação em telas verticais.
+
+Elementos de Toque: Botões e opções de resposta devem ser grandes, com espaçamento adequado para evitar toques acidentais.
+
+Tipografia Legível: As fontes devem ser grandes e claras, garantindo conforto na leitura em telas menores.
+
+Performance: O carregamento deve ser rápido em redes móveis. Otimize imagens e use o mínimo de bibliotecas externas.
+
+Responsividade: Após garantir uma experiência perfeita no celular, o design deve se adaptar de forma fluida a tablets e desktops, aproveitando o espaço extra sem quebrar a experiência principal.
+
+Experiência do Usuário (UX) e Gamificação Efeitos Visuais (Foco em Performance Mobile):
+Seleção de Resposta: Ao tocar em uma opção, ela deve ter um feedback visual claro (ex: aumentar levemente de tamanho e exibir uma borda colorida). As outras opções ficam semidesvanecidas.
+
+Transições Suaves: Use transições de CSS simples (ex: fade-in, slide-in) entre as perguntas para manter a fluidez sem sobrecarregar o processador do celular.
+
+Barra de Progresso: Uma barra no topo da tela deve indicar o progresso de forma visual e suave.
+
+Efeitos Sonoros (Otimizados para Web Mobile):
+
+Áudios em Base64: Todos os arquivos de áudio devem ser incorporados via strings Base64 para evitar requisições de rede e problemas com bloqueio de autoplay.
+
+Eventos de Som:
+
+Toque na Resposta: Som curto e satisfatório (som_clique.mp3).
+
+Mensagem de Incentivo: Som positivo e sutil (som_incentivo.mp3).
+
+Revelação do Resultado: Som de conquista (som_revelacao.mp3).
+
+Ativação por Toque: A reprodução do áudio deve ser iniciada por uma ação do usuário (o primeiro toque no botão "Começar") para cumprir as políticas dos navegadores mobile.
+
+Fluxo da Aplicação e Estrutura das Telas Tela 1: Boas-Vindas
+Layout: Centralizado, com título grande, subtítulo curto e um botão de CTA proeminente que ocupe boa parte da largura da tela.
+
+Conteúdo:
+
+Título: "Inicie sua Jornada de Autoconhecimento."
+
+Subtítulo: "Descubra sua personalidade com este teste interativo."
+
+Botão CTA: "COMEÇAR A JORNADA"
+
+Tela 2: Quiz Interativo
+
+Layout: Uma pergunta por tela. A pergunta no topo, seguida pelas três opções de resposta em botões grandes, um abaixo do outro.
+
+Banco de Perguntas: Utilize o banco de 45 perguntas previamente definido. A lógica deve somar um ponto para o tipo correspondente a cada resposta escolhida.
+
+Mensagens de Incentivo: Modais ou pop-ups sutis que aparecem e desaparecem automaticamente após alguns segundos, sem exigir interação do usuário:
+
+Após a Pergunta 9: "Você está indo muito bem! Continue."
+
+Após a Pergunta 18: "Metade do caminho! Suas respostas estão formando um padrão fascinante."
+
+Após a Pergunta 27: "Falta pouco! Continue com essa honestidade."
+
+Após a Pergunta 36: "Na reta final! Apenas mais algumas perguntas."
+
+Tela 3: Formulário de Captura de Lead
+
+Layout: Otimizado para preenchimento em celular. Labels acima dos campos de input para melhor visualização.
+
+Conteúdo:
+
+Título: "Seu resultado está pronto!"
+
+Subtítulo: "Insira seus dados para revelar seu perfil."
+
+Campos: Nome, Email (usar type="email" para otimizar o teclado do celular).
+
+Botão CTA: "VER MEU RESULTADO AGORA!"
+
+Tela 4: Página de Resultado e Venda
+
+Layout: O resultado do eneatipo deve ser a primeira coisa visível. Abaixo, uma breve descrição e, em seguida, a seção de vendas com um botão de CTA claro e sempre visível.
+
+Ações:
+
+Exibição Dinâmica: "Parabéns, [Nome]! Você é do Tipo [X]: O [Nome do Tipo]."
+
+Descrição: Apresentar o texto correspondente ao eneatipo resultante.
+
+Seção de Vendas: Título, texto persuasivo e o botão CTA final.
+
+Botão CTA de Vendas: "QUERO MEU GUIA COMPLETO" (deve levar à URL da página de vendas).
+
+Especificações Técnicas Frontend:
+Usar HTML5, CSS3 e JavaScript puro.
+
+Empregar Flexbox ou CSS Grid para criar os layouts responsivos.
+
+NÃO usar bibliotecas pesadas como jQuery. Foco em performance.
+
+Lógica do Quiz:
+
+Implementar um sistema de pontuação em JavaScript que armazene a contagem para cada um dos 9 tipos.
+
+Ao final, identificar o tipo com a maior pontuação. Em caso de empate, pode-se exibir o primeiro tipo que atingiu a pontuação máxima ou listar os tipos empatados.
+
+Integração (Webhook):
+
+No clique do botão "VER MEU RESULTADO AGORA!" (Tela 3), antes de redirecionar para a tela de resultado, disparar uma requisição fetch do tipo POST para a URL: https://n8n.misterx.com.br/webhook/leads-tati.
+
+Estrutura do JSON a ser enviado:
+
+JSON
+
+{
+"nome": "NOME_DO_USUARIO",
+"email": "EMAIL_DO_USUARIO",
+"eneatipo": "RESULTADO_DO_TESTE"
+}
+
+Pergutas e Respostas (Tipo para calculo. não deve ser exibido)
+Bloco 1: Cenários de Trabalho e Projetos
+
+1. Princípio Fundamental: Design Mobile-First
+Toda a aplicação deve ser projetada e desenvolvida priorizando a experiência em dispositivos móveis.
+
+Layout Vertical: O layout deve ser de coluna única, otimizado para visualização e interação em telas verticais.
+
+Elementos de Toque: Botões e opções de resposta devem ser grandes, com espaçamento adequado para evitar toques acidentais.
+
+Tipografia Legível: As fontes devem ser grandes e claras, garantindo conforto na leitura em telas menores.
+
+Performance: O carregamento deve ser rápido em redes móveis. Otimize imagens e use o mínimo de bibliotecas externas.
+
+Responsividade: Após garantir uma experiência perfeita no celular, o design deve se adaptar de forma fluida a tablets e desktops, aproveitando o espaço extra sem quebrar a experiência principal.
+
+2. Experiência do Usuário (UX) e Gamificação
+Efeitos Visuais (Foco em Performance Mobile):
+
+Seleção de Resposta: Ao tocar em uma opção, ela deve ter um feedback visual claro (ex: aumentar levemente de tamanho e exibir uma borda colorida). As outras opções ficam semidesvanecidas.
+
+Transições Suaves: Use transições de CSS simples (ex: fade-in, slide-in) entre as perguntas para manter a fluidez sem sobrecarregar o processador do celular.
+
+Barra de Progresso: Uma barra no topo da tela deve indicar o progresso de forma visual e suave.
+
+Efeitos Sonoros (Otimizados para Web Mobile):
+
+Áudios em Base64: Todos os arquivos de áudio devem ser incorporados via strings Base64 para evitar requisições de rede e problemas com bloqueio de autoplay.
+
+Eventos de Som:
+
+Toque na Resposta: Som curto e satisfatório (som_clique.mp3).
+
+Mensagem de Incentivo: Som positivo e sutil (som_incentivo.mp3).
+
+Revelação do Resultado: Som de conquista (som_revelacao.mp3).
+
+Ativação por Toque: A reprodução do áudio deve ser iniciada por uma ação do usuário (o primeiro toque no botão "Começar") para cumprir as políticas dos navegadores mobile.
+
+3. Fluxo da Aplicação e Estrutura das Telas
+Tela 1: Boas-Vindas
+
+Layout: Centralizado, com título grande, subtítulo curto e um botão de CTA proeminente que ocupe boa parte da largura da tela.
+
+Conteúdo:
+
+Título: "Inicie sua Jornada de Autoconhecimento."
+
+Subtítulo: "Descubra sua personalidade com este teste interativo."
+
+Botão CTA: "COMEÇAR A JORNADA"
+
+Tela 2: Quiz Interativo
+
+Layout: Uma pergunta por tela. A pergunta no topo, seguida pelas três opções de resposta em botões grandes, um abaixo do outro.
+
+Banco de Perguntas: Utilize o banco de 45 perguntas previamente definido. A lógica deve somar um ponto para o tipo correspondente a cada resposta escolhida.
+
+Mensagens de Incentivo: Modais ou pop-ups sutis que aparecem e desaparecem automaticamente após alguns segundos, sem exigir interação do usuário:
+
+Após a Pergunta 9: "Você está indo muito bem! Continue."
+
+Após a Pergunta 18: "Metade do caminho! Suas respostas estão formando um padrão fascinante."
+
+Após a Pergunta 27: "Falta pouco! Continue com essa honestidade."
+
+Após a Pergunta 36: "Na reta final! Apenas mais algumas perguntas."
+
+Tela 3: Formulário de Captura de Lead
+
+Layout: Otimizado para preenchimento em celular. Labels acima dos campos de input para melhor visualização.
+
+Conteúdo:
+
+Título: "Seu resultado está pronto!"
+
+Subtítulo: "Insira seus dados para revelar seu perfil."
+
+Campos: Nome, Email (usar type="email" para otimizar o teclado do celular).
+
+Botão CTA: "VER MEU RESULTADO AGORA!"
+
+Tela 4: Página de Resultado e Venda
+
+Layout: O resultado do eneatipo deve ser a primeira coisa visível. Abaixo, uma breve descrição e, em seguida, a seção de vendas com um botão de CTA claro e sempre visível.
+
+Ações:
+
+Exibição Dinâmica: "Parabéns, [Nome]! Você é do Tipo [X]: O [Nome do Tipo]."
+
+Descrição: Apresentar o texto correspondente ao eneatipo resultante.
+
+Seção de Vendas: Título, texto persuasivo e o botão CTA final.
+
+Botão CTA de Vendas: "QUERO MEU GUIA COMPLETO" (deve levar à URL da página de vendas).
+
+4. Especificações Técnicas
+Frontend:
+
+Usar HTML5, CSS3 e JavaScript puro.
+
+Empregar Flexbox ou CSS Grid para criar os layouts responsivos.
+
+NÃO usar bibliotecas pesadas como jQuery. Foco em performance.
+
+Lógica do Quiz:
+
+Implementar um sistema de pontuação em JavaScript que armazene a contagem para cada um dos 9 tipos.
+
+Ao final, identificar o tipo com a maior pontuação. Em caso de empate, pode-se exibir o primeiro tipo que atingiu a pontuação máxima ou listar os tipos empatados.
+
+Integração (Webhook):
+
+No clique do botão "VER MEU RESULTADO AGORA!" (Tela 3), antes de redirecionar para a tela de resultado, disparar uma requisição fetch do tipo POST para a URL: https://n8n.misterx.com.br/webhook/leads-tati.
+
+Estrutura do JSON a ser enviado:
+
+JSON
+
+{
+  "nome": "NOME_DO_USUARIO",
+  "email": "EMAIL_DO_USUARIO",
+  "eneatipo": "RESULTADO_DO_TESTE"
+}
+
+Pergutas e Respostas (Tipo para calculo. não deve ser exibido)
+Bloco 1: Cenários de Trabalho e Projetos
+1. Ao ser convidado para um jantar na casa de amigos, sua principal preocupação ou foco é:
+A) Levar o prato ou a bebida perfeita, garantindo que sua contribuição seja de alta qualidade e siga a etiqueta. (Tipo 1)
+B) Chegar pronto para ajudar o anfitrião, seja na cozinha ou garantindo que todos os convidados estejam se sentindo bem-vindos e cuidados. (Tipo 2)
+C) Usar a oportunidade para interagir com pessoas interessantes e causar uma ótima impressão, mostrando seu lado mais charmoso e bem-sucedido. (Tipo 3)
+
+2. Você está assistindo a um filme com um grupo e a maioria das pessoas ama a história, mas você a considera clichê e sem profundidade. Qual sua reação interna?
+A) Sinto-me um pouco deslocado e incompreendido, questionando por que ninguém mais percebe a falta de originalidade que me parece tão óbvia. (Tipo 4)
+B) Tento analisar objetivamente por que o filme agrada a tantos, desmontando a estrutura da trama em minha mente para entender sua fórmula. (Tipo 5)
+C) Permaneço em silêncio e evito expressar minha opinião para não estragar a diversão do grupo e manter um clima de harmonia. (Tipo 9)
+
+3. Você se vê diante de um desafio completamente novo e intimidador. Qual é seu primeiro pensamento?
+A) "Quais são os piores cenários possíveis? Preciso me preparar para todos eles e procurar conselhos de pessoas confiáveis." (Tipo 6)
+B) "Fantástico, uma nova aventura! Isso parece muito mais emocionante do que ficar na mesma rotina de sempre." (Tipo 7)
+C) "Ok, quem está no comando aqui? Preciso assumir o controle desta situação para garantir que ela seja resolvida e que ninguém tire vantagem de mim." (Tipo 8)
+
+4. Durante uma conversa, alguém afirma algo que você sabe que está factualmente incorreto. O que você faz?
+A) Fico quieto e guardo a informação para mim, mas mentalmente arquivo o fato para minha própria análise, pois não vejo necessidade de expor a pessoa. (Tipo 5)
+B) Busco uma forma de suavizar a situação ou mudar de assunto, pois corrigir alguém publicamente poderia criar um momento de tensão desconfortável. (Tipo 9)
+C) Sinto um forte impulso de corrigir a informação, pois a precisão dos fatos é importante e o erro não deveria passar despercebido. (Tipo 1)
+
+5. Qual situação te faria sentir mais valorizado em um relacionamento?
+A) Quando a outra pessoa demonstra explicitamente que precisa de você e que sua ajuda e seu carinho fazem toda a diferença na vida dela. (Tipo 2)
+B) Quando a outra pessoa admira publicamente suas conquistas e te vê como um parceiro de sucesso, que agrega valor à imagem dela. (Tipo 3)
+C) Quando a outra pessoa entende suas emoções mais complexas e sua necessidade de ser autêntico, sem te julgar ou te achar "dramático". (Tipo 4)
+
+6. Você está no comando de um passeio em grupo. O que é mais importante para você?
+A) Manter a energia alta, garantindo que o roteiro tenha várias opções divertidas e que ninguém fique entediado. (Tipo 7)
+B) Proteger o grupo, tomando as decisões difíceis e garantindo que tudo ocorra de forma segura e sob seu controle. (Tipo 8)
+C) Assegurar que o ritmo seja confortável para todos e que as decisões sejam tomadas em consenso, sem deixar ninguém para trás. (Tipo 9)
+
+7. Uma nova política é implementada em seu trabalho e você a considera profundamente injusta e ilógica. Qual sua atitude?
+A) Eu me posiciono firmemente contra, questionando a autoridade e expondo as falhas da política para proteger a mim e aos meus colegas. (Tipo 8)
+B) Sinto um grande desconforto, mas tento me adaptar e evito o confronto direto, esperando que a situação se resolva sozinha ou que outros tomem a frente. (Tipo 9)
+C) Fico indignado com a falta de bom senso e sinto a responsabilidade de apresentar uma proposta alternativa, que seja mais correta e eficiente. (Tipo 1)
+
+8. Pense na sua reputação. Como você mais gostaria de ser visto pelos outros?
+A) Como alguém leal e confiável, que está sempre preparado para qualquer eventualidade. (Tipo 6)
+B) Como alguém otimista, divertido e que sabe aproveitar a vida ao máximo. (Tipo 7)
+C) Como uma pessoa forte, decidida e que não tem medo de lutar pelo que acredita. (Tipo 8)
+
+9. Se você tivesse que se descrever em um contexto profissional, qual descrição se encaixaria melhor?
+A) "Sou movido por resultados e busco ser o melhor no que faço. Eficiência e imagem são tudo." (Tipo 3)
+B) "Busco um trabalho que tenha significado e que me permita expressar minha visão única de mundo." (Tipo 4)
+C) "Preciso entender todos os detalhes de um sistema antes de agir. Conhecimento é poder e segurança." (Tipo 5)
+
+Bloco 4: Cenários de Autopercepção
+10. Qual destes medos mais te assombra?
+A) O medo de ser visto como incompetente ou incapaz de lidar com o mundo.
+B) O medo de ser traído ou abandonado por aqueles em quem confio.
+C) O medo de perder oportunidades e ficar preso em uma rotina de sofrimento e monotonia.
+
+11. Como você geralmente toma decisões importantes?
+A) Tento encontrar um meio-termo que agrade a todos, mesmo que isso signifique abrir mão da minha preferência inicial.
+B) Sigo minha intuição e meu senso de moralidade, fazendo o que é certo, mesmo que seja o caminho mais difícil.
+C) Me conecto com as pessoas envolvidas para entender suas necessidades, pois a decisão certa é a que faz todos se sentirem bem.
+
+12. O que mais te motiva na vida?
+A) Ser reconhecido pelo meu sucesso e pelas minhas conquistas.
+B) Encontrar um significado único para minha vida e expressar quem eu sou de verdade.
+C) Sentir-me seguro e preparado para qualquer desafio que a vida apresentar.
+
+Continue alternando os tipos para os próximos blocos...
+13. Quando se sente estressado, qual é a sua fuga mais comum?
+A) Se isolar para processar seus pensamentos sem interferência externa. (Tipo 5)
+B) Buscar novas experiências e distrações para não ter que lidar com a dor. (Tipo 7)
+C) Se tornar mais controlador e intenso para retomar o domínio da situação. (Tipo 8)
+
+14. O que significa "amor" para você, em sua essência?
+A) Cuidar e se doar para o outro, muitas vezes colocando as necessidades dele acima das suas. (Tipo 2)
+B) Uma conexão profunda e autêntica, onde ambos se sentem compreendidos em sua singularidade. (Tipo 4)
+C) Uma aceitação incondicional e pacífica, livre de dramas e conflitos. (Tipo 9)
+
+15. Você acabou de concluir uma tarefa importante. Qual pensamento é mais provável?
+A) "Poderia ter feito melhor. Onde foi que eu errei?" (Tipo 1)
+B) "Ótimo, concluído! Qual é o próximo desafio para eu superar?" (Tipo 3)
+C) "Será que todos estão satisfeitos com o resultado? Espero não ter decepcionado ninguém."
+
+16. Seus amigos te descreveriam como alguém que...
+A) Tem princípios muito fortes e busca sempre fazer a coisa certa. (Tipo 1)
+B) É extremamente prestativo e sabe exatamente o que os outros precisam. (Tipo 2)
+C) É focado, ambicioso e um exemplo de sucesso e eficiência. (Tipo 3)
+
+17. O que te deixa mais desconfortável em um relacionamento?
+A) Sentir que a relação se tornou superficial e comum, sem uma conexão autêntica. (Tipo 4)
+B) Intrusões excessivas que invadem meu espaço pessoal e meu tempo para pensar. (Tipo 5)
+C) Uma sensação de instabilidade ou não saber onde você realmente "pisa" com a outra pessoa. (Tipo 6)
+
+18. Qual destas atividades de fim de semana mais te atrai?
+A) Um festival com várias atividades, shows e muita gente para conhecer. (Tipo 7)
+B) Liderar um projeto voluntário na comunidade, organizando e fazendo acontecer. (Tipo 8)
+C) Um dia tranquilo em casa ou na natureza, sem agenda e sem obrigações. (Tipo 9)
+
+[Bloco 3: Perguntas 19-27]
+
+19. Você cometeu um erro que ninguém viu. Como você se sente?
+A) Mal, pois minha própria consciência crítica é meu juiz mais severo. (Tipo 1)
+B) Preocupado que, de alguma forma, isso possa prejudicar a imagem que os outros têm de mim. (Tipo 3)
+C) Aliviado por não ter gerado um conflito ou desapontado alguém diretamente. (Tipo 9)
+
+20. Como você lida com suas emoções mais intensas?
+A) Mergulho nelas, buscando entendê-las e expressá-las de forma artística ou dramática. (Tipo 4)
+B) Me distancio delas para analisá-las de forma objetiva, como um quebra-cabeça a ser resolvido. (Tipo 5)
+C) As sinto de forma direta e poderosa, e geralmente preciso expressá-las fisicamente ou verbalmente. (Tipo 8)
+
+21. Qual é sua maior fonte de segurança?
+A) O amor e a aprovação das pessoas que são importantes para mim. (Tipo 2)
+B) Ter um sistema de crenças, pessoas ou regras leais que me guiem. (Tipo 6)
+C) A certeza de que posso contar comigo mesmo para controlar meu próprio destino. (Tipo 8)
+
+22. "Liberdade" para você significa principalmente...
+A) Liberdade de não ser limitado por expectativas, podendo viver múltiplas experiências. (Tipo 7)
+B) Liberdade de não ter conflitos e pressões externas, vivendo em paz. (Tipo 9)
+C) Liberdade de ser perfeito e íntegro, livre de falhas morais. (Tipo 1)
+
+23. Você entra em uma livraria. Qual seção te atrai primeiro?
+A) Biografias de pessoas bem-sucedidas e livros sobre produtividade. (Tipo 3)
+B) Poesia, romances clássicos ou livros sobre arte e psicologia profunda. (Tipo 4)
+C) Ciência, manuais técnicos ou livros que explicam como o mundo funciona. (Tipo 5)
+
+24. Um debate acalorado começa em um jantar. Sua atitude é:
+A) Participar com paixão, defendendo meu ponto de vista e desafiando os outros. (Tipo 8)
+B) Tentar acalmar os ânimos, dizendo algo como "gente, ambos os lados têm bons pontos". (Tipo 9)
+C) Analisar os argumentos de todos, mentalmente checando os fatos e a lógica. (Tipo 6)
+
+25. O que te faria recusar uma ótima oportunidade de emprego?
+A) Se o ambiente de trabalho parecesse antiético ou desalinhado com meus valores. (Tipo 1)
+B) Se eu não sentisse uma conexão pessoal com a equipe ou o propósito da empresa. (Tipo 2)
+C) Se o trabalho fosse monótono e não oferecesse espaço para novas ideias e aventuras. (Tipo 7)
+
+26. Você precisa aprender uma nova habilidade complexa. Como você começa?
+A) Buscando o melhor curso ou especialista e seguindo o método à risca. (Tipo 3)
+B) Pesquisando tudo sobre o assunto primeiro, acumulando todo o conhecimento teórico antes de praticar. (Tipo 5)
+C) Procurando um mentor ou um grupo de apoio para aprender junto e tirar dúvidas. (Tipo 6)
+
+27. O que mais te orgulha em si mesmo?
+A) Minha capacidade de me conectar profundamente com os sentimentos dos outros. (Tipo 2)
+B) Minha identidade única e minha sensibilidade para a beleza e o significado da vida. (Tipo 4)
+C) Minha resiliência e otimismo, mesmo diante das dificuldades. (Tipo 7)
+
+[Bloco 4: Perguntas 28-36]
+(Continue criando perguntas nesse formato, sempre alternando os 3 tipos apresentados nas opções para evitar padrões)
+
+28. Diante de uma grande mudança na vida (ex: mudar de cidade), o que mais pesa?
+A) A possibilidade de perder o controle e a autonomia que eu tinha no lugar antigo. (Tipo 8)
+B) A perturbação da minha paz e da minha rotina estabelecida. (Tipo 9)
+C) A responsabilidade de fazer tudo da maneira "certa" e perfeita no novo lugar. (Tipo 1)
+
+29. Qual crítica te ofenderia mais?
+A) "Você é egoísta e não se importa com ninguém." (Tipo 2)
+B) "Você é igual a todo mundo, não tem nada de especial." (Tipo 4)
+C) "Você é ingênuo e vive fugindo da realidade." (Tipo 7)
+
+30. Em um projeto em grupo, qual papel você assume naturalmente?
+A) O Estrategista, que analisa os riscos e prepara planos de contingência. (Tipo 6)
+B) O Visionário, que traz ideias novas e mantém a energia do grupo alta. (Tipo 7)
+C) O Protetor, que garante que a equipe não seja explorada e que a justiça prevaleça. (Tipo 8)
+
+31. O que é mais importante em um líder?
+A) Sua competência e conhecimento inquestionável na área. (Tipo 5)
+B) Sua integridade e seu compromisso com princípios justos. (Tipo 1)
+C) Sua capacidade de inspirar e motivar a equipe para alcançar grandes resultados. (Tipo 3)
+
+32. Você ganha na loteria. Qual sua primeira atitude após garantir o dinheiro?
+A) Fazer uma lista de todas as pessoas que amo e que quero ajudar financeiramente. (Tipo 2)
+B) Criar um plano de investimento sólido para garantir que o dinheiro renda e me dê segurança para o resto da vida. (Tipo 6)
+C) Planejar imediatamente uma viagem ao redor do mundo ou comprar algo que sempre sonhei. (Tipo 7)
+
+33. Quando você sente que está sob ataque, sua defesa é:
+A) Se tornar mais frio e argumentativo, usando a lógica e os fatos para se proteger. (Tipo 5)
+B) Confrontar diretamente a ameaça, de forma assertiva e sem recuar. (Tipo 8)
+C) Se fechar em seu mundo interior, sentindo que ninguém realmente entende sua perspectiva. (Tipo 4)
+
+34. Como você define um "dia bem aproveitado"?
+A) Um dia em que fui produtivo, avancei em minhas metas e causei uma boa impressão. (Tipo 3)
+B) Um dia em que mantive a paz, evitei estresse e me senti conectado comigo mesmo e com os outros. (Tipo 9)
+C) Um dia em que fiz tudo de acordo com o plano, de forma organizada e correta. (Tipo 1)
+
+35. Você descobre um novo hobby fascinante. Sua tendência é:
+A) Mergulhar de cabeça, querendo aprender tudo sobre ele o mais rápido possível para se tornar um especialista. (Tipo 5)
+B) Se tornar um defensor leal desse hobby, tentando convencer todos os seus amigos a experimentá-lo também. (Tipo 6)
+C) Usá-lo como uma forma de se expressar e se diferenciar dos outros. (Tipo 4)
+
+36. Se você tivesse que escolher um "superpoder", qual seria?
+A) O poder de curar as pessoas e aliviar seu sofrimento. (Tipo 2)
+B) O poder de ler mentes para entender o que as pessoas realmente pensam e se são confiáveis. (Tipo 6)
+C) O poder da superforça para proteger os inocentes e impor a justiça. (Tipo 8)
+
+[Bloco 5: Perguntas 37-45]
+
+37. Qual ambiente de trabalho te deixaria mais esgotado?
+A) Um ambiente caótico, sem regras claras e com padrões de qualidade baixos. (Tipo 1)
+B) Um ambiente onde o esforço individual não é reconhecido e a imagem não importa. (Tipo 3)
+C) Um ambiente com conflitos e "dramas" constantes, onde a paz é impossível. (Tipo 9)
+
+38. Qual é a sua relação com o passado?
+A) Frequentemente sinto nostalgia e penso que as coisas poderiam ter sido diferentes ou mais significativas. (Tipo 4)
+B) O vejo como uma fonte de aprendizado e dados para tomar melhores decisões no futuro. (Tipo 5)
+C) Tento não me prender a ele; o que importa são as possibilidades e alegrias do futuro. (Tipo 7)
+
+39. Você precisa dar um presente a alguém. Como você escolhe?
+A) Penso em algo que seja útil e que vá resolver uma necessidade prática da pessoa. (Tipo 2)
+B) Busco algo que vá impressionar a pessoa e os outros, mostrando meu bom gosto e sucesso. (Tipo 3)
+C) Procuro um presente que seja único e simbólico, que mostre o quanto eu entendo a essência daquela pessoa. (Tipo 4)
+
+40. Qual frase você se pega dizendo com mais frequência?
+A) "Vamos pensar em todos os cenários possíveis..." (Tipo 6)
+B) "Isso não é justo!" (Tipo 8)
+C) "Qual é a maneira correta de fazer isso?" (Tipo 1)
+
+41. Você tem uma semana inteira para fazer o que quiser, sozinho. Como você a aproveita?
+A) Criando algo, seja um texto, uma pintura, uma música; algo que expresse meus sentimentos. (Tipo 4)
+B) Fazendo uma imersão profunda em um assunto que me fascina, com livros, cursos e documentários. (Tipo 5)
+C) Planejando várias atividades diferentes, uma para cada dia, para experimentar um pouco de tudo. (Tipo 7)
+
+42. O que te faz sentir mais conectado a alguém?
+A) Quando a pessoa me pede ajuda e eu sinto que sou indispensável para ela. (Tipo 2)
+B) Quando posso contar com a lealdade incondicional da pessoa, não importa o que aconteça. (Tipo 6)
+C) Quando a pessoa respeita meu espaço e minha autonomia sem tentar me controlar. (Tipo 8)
+
+43. Qual é sua maior dificuldade em expressar raiva?
+A) Eu raramente a expresso diretamente, pois isso pode gerar conflito e quebrar a harmonia. (Tipo 9)
+B) Eu a transformo em ressentimento e uma crítica interna severa sobre como as coisas deveriam ser. (Tipo 1)
+C) Eu a sinto, mas tenho medo de expressá-la e acabar afastando as pessoas de quem preciso. (Tipo 2)
+
+44. Se sua vida fosse um filme, qual seria o gênero?
+A) Um filme de superação, mostrando como o trabalho duro leva ao sucesso e ao reconhecimento. (Tipo 3)
+B) Um drama cult ou um filme de arte, cheio de simbolismo e profundidade emocional. (Tipo 4)
+C) Um documentário investigativo, revelando a verdade por trás de um sistema complexo. (Tipo 5)
+
+45. Qual é sua filosofia de vida em uma frase?
+A) "A vida é uma aventura cheia de possibilidades, e não quero perder nenhuma." (Tipo 7)
+B) "Os fortes devem proteger os fracos e lutar pelo que é certo." (Tipo 8)
+C) "A paz interior não é negociável." (Tipo 9)

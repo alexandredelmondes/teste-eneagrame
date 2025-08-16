@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Eneagrama - Descubra seu Tipo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .welcome-screen {
+            text-align: center;
+            padding: 40px 30px;
+        }
+
+        .sparkle-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #10B981, #059669);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1F2937;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #6B7280;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .info-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: #4B5563;
+        }
+
+        .info-item::before {
+            content: "✨";
+            margin-right: 10px;
+        }
+
+        .start-button {
+            background: linear-gradient(45deg, #10B981, #059669);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            width: 100%;
+        }
+
+        .start-button:hover {
+            transform: scale(1.02);
+        }
+
+        .quiz-screen {
+            display: none;
+            padding: 30px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #E5E7EB;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10B981, #059669);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .question-number {
+            font-size: 14px;
+            color: #6B7280;
+            margin-bottom: 10px;
+        }
+
+        .question-text {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1F2937;
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option {
+            background: #F9FAFB;
+            border: 2px solid #E5E7EB;
+            border-radius: 12px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+        }
+
+        .option:hover {
+            border-color: #10B981;
+            background: #F0FDF4;
+        }
+
+        .option.selected {
+            border-color: #10B981;
+            background: #F0FDF4;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .result-screen {
+            display: none;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .result-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1F2937;
+            margin-bottom: 10px;
+        }
+
+        .result-type {
+            font-size: 18px;
+            color: #10B981;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .result-description {
+            font-size: 16px;
+            color: #4B5563;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .restart-button {
+            background: #6B7280;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 12px 24px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .restart-button:hover {
+            background: #4B5563;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Tela de Boas-vindas -->
+        <div id="welcome-screen" class="welcome-screen">
+            <div class="sparkle-icon">✨</div>
+            <h1>Descubra seu Tipo de Eneagrama</h1>
+            <p class="subtitle">Uma jornada de autoconhecimento que revelará aspectos únicos da sua personalidade</p>
+            
+            <ul class="info-list">
+                <li class="info-item">45 perguntas cuidadosamente elaboradas</li>
+                <li class="info-item">Resultado detalhado e personalizado</li>
+                <li class="info-item">Descubra seu tipo único de personalidade</li>
+            </ul>
+            
+            <button class="start-button" onclick="startQuiz()">COMEÇAR A JORNADA</button>
+        </div>
+
+        <!-- Tela do Quiz -->
+        <div id="quiz-screen" class="quiz-screen">
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+            </div>
+            
+            <div id="question-number" class="question-number">Pergunta 1 de 45</div>
+            <div id="question-text" class="question-text"></div>
+            
+            <div id="options" class="options"></div>
+        </div>
+
+        <!-- Tela de Resultado -->
+        <div id="result-screen" class="result-screen">
+            <h2 class="result-title">Seu Resultado</h2>
+            <div id="result-type" class="result-type"></div>
+            <div id="result-description" class="result-description"></div>
+            <button class="restart-button" onclick="restartQuiz()">Fazer Teste Novamente</button>
+        </div>
+    </div>
+
+    <script src="quiz-data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
