@@ -23,7 +23,7 @@ export default function ResultScreen({ result, userData, onRestart }: Props) {
 
   const handleSalesPagePress = () => {
     // URL para WhatsApp com mensagem pré-definida
-    Linking.openURL('https://api.whatsapp.com/send?phone=5511986215512&text=Ol%C3%A1!%20Fiz%20o%20teste%20do%20Eneagrama%20e%20quero%20fazer%20minha%20sess%C3%A3o%20estrat%C3%A1gica%20gratuita.');
+    Linking.openURL('https://api.whatsapp.com/send?phone=5511986215512&text=Ol%C3%A1!%20Fiz%20o%20teste%20do%20Eneagrama%20e%20quero%20fazer%20minha%20sess%C3%A3o%20estrat%C3%A9gica%20gratuita.');
   };
 
   return (
