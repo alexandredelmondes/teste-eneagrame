@@ -11,7 +11,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Trophy, Mail, User } from 'lucide-react-native';
+import { Trophy, Mail, User, Phone } from 'lucide-react-native';
 import { UserData } from './EneagramQuizApp';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
@@ -23,16 +23,21 @@ interface Props {
 export default function LeadCaptureScreen({ onSubmit }: Props) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [whatsapp, setWhatsapp] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async () => {
-    if (name.trim() && email.trim()) {
+    if (name.trim() && email.trim() && whatsapp.trim()) {
       setIsSubmitting(true);
-      await onSubmit({ name: name.trim(), email: email.trim() });
+      await onSubmit({ 
+        name: name.trim(), 
+        email: email.trim(),
+        whatsapp: whatsapp.trim() 
+      });
     }
   };
 
-  const isValid = name.trim().length > 0 && email.trim().length > 0 && email.includes('@');
+  const isValid = name.trim().length > 0 && email.trim().length > 0 && email.includes('@') && whatsapp.trim().length > 0;
 
   return (
     <KeyboardAvoidingView
@@ -72,6 +77,20 @@ export default function LeadCaptureScreen({ onSubmit }: Props) {
                 onChangeText={setEmail}
                 placeholderTextColor="#9CA3AF"
                 keyboardType="email-address"
+                autoCapitalize="none"
+                autoCorrect={false}
+              />
+            </View>
+
+            <View style={styles.inputContainer}>
+              <Phone size={20} color="#6B7280" style={styles.inputIcon} />
+              <TextInput
+                style={styles.input}
+                placeholder="Seu WhatsApp com DDD"
+                value={whatsapp}
+                onChangeText={setWhatsapp}
+                placeholderTextColor="#9CA3AF"
+                keyboardType="phone-pad"
                 autoCapitalize="none"
                 autoCorrect={false}
               />

@@ -17,6 +17,7 @@ export type QuizState = 'welcome' | 'quiz' | 'leadCapture' | 'result';
 export interface UserData {
   name: string;
   email: string;
+  whatsapp: string;
 }
 
 export interface QuizResult {
@@ -28,7 +29,7 @@ export default function EneagramQuizApp() {
   const [currentState, setCurrentState] = useState<QuizState>('welcome');
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [scores, setScores] = useState<number[]>(new Array(9).fill(0));
-  const [userData, setUserData] = useState<UserData>({ name: '', email: '' });
+  const [userData, setUserData] = useState<UserData>({ name: '', email: '', whatsapp: '' });
   const [quizResult, setQuizResult] = useState<QuizResult | null>(null);
 
   useEffect(() => {
@@ -64,6 +65,7 @@ export default function EneagramQuizApp() {
       const webhookData = {
         nome: data.name,
         email: data.email,
+        whatsapp: data.whatsapp,
         eneatipo: `Tipo ${(quizResult?.type || 0) + 1}`,
       };
 
@@ -86,7 +88,7 @@ export default function EneagramQuizApp() {
     setCurrentState('welcome');
     setCurrentQuestion(0);
     setScores(new Array(9).fill(0));
-    setUserData({ name: '', email: '' });
+    setUserData({ name: '', email: '', whatsapp: '' });
     setQuizResult(null);
   };
 
